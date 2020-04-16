@@ -1,5 +1,6 @@
 {
   "name": "@tools-utils/odoo",
+  "version": "1.0.0",
   "license": "MIT",
   "private": true,
   "author": "Tools & Utils <github@tools-utils.com>",
