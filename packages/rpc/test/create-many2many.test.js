@@ -5,20 +5,22 @@ import handleError from './handle-error'
 
 const odoo = new Odoo({ baseURL: settings.baseURL })
 const model = 'res.partner'
+
 const data = {
-  ref: 'odoo-test-partner',
-  name: 'Muster Mann',
-  city: 'Berlin',
-  street: '26 Lindner strasse',
-  mobile: '+49 176 1234 56',
-  email: 'odoo.api@tools-utils.com',
-  active: 'true',
-  customer: 'true',
-  company_type: 'person'
+  name: "Muster Mann (Mocha Test)",
+  city: "Berlin",
+  street: "26 Lindner strasse",
+  mobile: "+49 176 1234 56",
+  email: "odoo.api@tools-utils.com",
+  active: "true",
+  customer: "true",
+  company_type: "person",
+  category_id: [[1, 20, { name: 'test', display_name: 'Mocha Test', color: 2 }]],
+  ref: 9999
 }
 
-describe('Test create/update method', () => {
-  it('Should return valid result', async () => {
+describe('Test create many2many method', () => {
+  it('Should create a new category', async () => {
     try {
       let resp = await odoo.auth(settings)
       assert.ok(resp.data.result.uid)
@@ -28,7 +30,7 @@ describe('Test create/update method', () => {
       const sessionId = resp.data.result.session_id
       let cookie = `session_id=${sessionId}`
 
-      const domain = [[ 'name', '=', 'Muster Mann' ]]
+      const domain = [[ 'ref', '=', 9999 ]]
       const kwargs = {
         limit: 10,
         order: 'id asc'

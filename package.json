@@ -1,9 +1,22 @@
 {
-  "lerna": "3.20.2",
-  "packages": [
+  "name": "@tools-utils/odoo",
+  "license": "MIT",
+  "private": true,
+  "author": "Tools & Utils <github@tools-utils.com>",
+  "main": "lib/index.js",
+  "scripts": {
+    "prebuild": "rm -rf lib",
+    "build": "lerna exec --parallel -- ./node_modules/.bin/babel src -d lib && ./node_modules/.bin/babel src -d lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-transform-async-to-generator": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "lerna": "^3.20.2"
+  },
+  "workspaces": [
     "packages/*"
-  ],
-  "version": "independent",
-  "npmClient": "yarn",
-  "useWorkspaces": true
+  ]
 }
