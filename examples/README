@@ -1,9 +1,6 @@
 # Usage
 
 ```
-
-```
-```
 yarn build
 
 node lib/index.js
