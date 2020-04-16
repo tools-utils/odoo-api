@@ -5,8 +5,8 @@ import handleError from './handle-error'
 
 const odoo = new Odoo({ baseURL: settings.baseURL })
 
-describe('Test read method', () => {
-  it('Should return valid uid', async () => {
+describe('Test search method', () => {
+  it('Should return valid result', async () => {
     try {
       let resp = await odoo.auth(settings)
       assert.ok(resp.data.result.uid)
@@ -15,8 +15,13 @@ describe('Test read method', () => {
 
       const sessionId = resp.data.result.session_id
       let cookie = `session_id=${sessionId}`
-
-      resp = await odoo.read({ model: 'res.partner', ids: [1, 2] }, { context, cookie, sessionId })
+      const domain = [ [ 'create_date', '>', '2019-01-01' ], [ 'create_date', '<', '2019-12-31' ] ]
+      const kwargs = {
+        limit: 10,
+        order: 'id asc'
+      }
+      const model = 'res.partner'
+      resp = await odoo.search({ model, domain, kwargs }, { context, cookie, sessionId })
 
       assert.equal(resp.status, 200)
       assert.equal(resp.statusText, 'OK')

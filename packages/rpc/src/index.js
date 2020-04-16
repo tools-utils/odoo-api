@@ -50,6 +50,54 @@ class Odoo {
     const args = [ids]
     return await this.callkw({ model, method, args, kwargs: {} }, options)
   }
+
+  async readGroup({ model, domain, fields, groupby, kwargs = {} }, options) {
+    const method = 'read_group'
+    const args = [domain, fields, groupby]
+    return await this.callkw({ model, method, args, kwargs }, options)
+  }
+
+  async search({ model, domain, kwargs = {} }, options) {
+    const method = 'search'
+    const args = [domain]
+    return await this.callkw({ model, method, args, kwargs }, options)
+  }
+
+  async searchRead({ model, domain, fields, kwargs = {} }, options) {
+    const method = 'search_read'
+    kwargs = { domain, fields, ...kwargs }
+    return await this.callkw({ model, method, args: [] , kwargs }, options)
+  }
+
+  async create({ model, data }, options) {
+    const method = 'create'
+    return await this.callkw({ model, method, args: [data] }, options)
+  }
+
+  async delete({ model, ids }, options) {
+    const method = 'unlink'
+    const args = [ids]
+    return await this.callkw({ model, method, args }, options)
+  }
+
+  async update({ model, id, data }, options) {
+    const method = 'write'
+    const args = [[id], data]
+    return await this.callkw({ model, method, args }, options)
+  }
+
+  async fieldsGet({ model, fields = [], attributes = {} }, options) {
+    const method = 'fields_get'
+    const args = [fields]
+    const kwargs = attributes
+    return this.callkw({ model, method, args, kwargs }, options)
+  }
+
+  async count({model, domain = [], kwargs = {} }, options) {
+    const method = 'search_count'
+    const args = [domain]
+    return await this.callkw({ model, method, args, kwargs }, options)
+  }
 }
 
 export default Odoo
