@@ -15,8 +15,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
-      ODOO_HOST: ${ODOO_HOST}
-      PORT: ${PORT}
+      ODOO_HOST: http://127.0.0.0:8069
+      PORT: 9000
     ports:
       - 9000:9000
     working_dir: /odoo_api
