@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "scripts": {
     "prebuild": "rm -rf lib",
-    "build": "lerna exec --parallel -- ./node_modules/.bin/babel src -d lib",
+    "build": "lerna exec --parallel -- ./node_modules/.bin/babel src -d lib && ./node_modules/.bin/babel src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

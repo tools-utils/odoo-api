@@ -77,3 +77,18 @@ const settings = {
   password: ''
 } 
 ```
+
+- Start server
+
+```
+yarn build
+
+export ODOO_HOST=http://0.0.0.0:8069
+export PORT=9000
+
+node lib/index.js 
+```
+
+```
+curl -d '{"db": "odoo", "login": "a.user", "password": "secret" }' -H 'Content-Type: application/json'  http://localhost:9000/auth
+```

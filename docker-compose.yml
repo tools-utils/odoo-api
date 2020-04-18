@@ -1,0 +1,23 @@
+version: '3'
+services:
+  build_image:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: odoo_api
+  odoo_api:
+    image: odoo_api
+    container_name: odoo_api
+    restart: ${RESTART_MODE}
+    env_file:
+      - .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      ODOO_HOST: ${ODOO_HOST}
+      PORT: ${PORT}
+    working_dir: /odoo_api
+    command: ["node", "lib/index.js"]
+    depends_on:
+      - build_image
