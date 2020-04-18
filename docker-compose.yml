@@ -17,6 +17,8 @@ services:
     environment:
       ODOO_HOST: ${ODOO_HOST}
       PORT: ${PORT}
+    ports:
+      - 9000:9000
     working_dir: /odoo_api
     command: ["node", "lib/index.js"]
     depends_on:
