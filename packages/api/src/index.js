@@ -120,13 +120,16 @@ const remove = async (req, res) => {
   micro.send(res, resp.status, resp.data)
 }
 
+const notfound = (req, res) => micro.send(res, 200, new Date())
+
 const APIs = [
   post('/auth', auth),
   get('/:model/:id', getOne),
   get('/:model/', getMany),
   post('/:model', create),
   put('/:model/:id', update),
-  del('/:model/:id', remove)    
+  del('/:model/:id', remove),
+  get('/*', notfound)    
 ]
 
 const server = micro(router(...APIs))

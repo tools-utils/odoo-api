@@ -13,7 +13,6 @@ RUN apk add --no-cache openssh
 
 RUN npm install
 RUN npm install --quiet node-gyp -g
-RUN npm install pm2 -g
 RUN rm -rf ./lib
 
 RUN npm install lerna -g
