@@ -9,8 +9,6 @@ services:
     image: odoo_api
     container_name: odoo_api
     restart: unless-stopped
-    env_file:
-      - .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
