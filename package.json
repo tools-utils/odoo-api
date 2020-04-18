@@ -1,5 +1,4 @@
 {
-  "name": "@tools-utils/odoo",
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
@@ -19,5 +18,9 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tools-utils/odoo-api.git"
+  }
 }
