@@ -1,0 +1,22 @@
+{
+  "name": "@tools-utils/odoo",
+  "version": "1.0.1",
+  "description": "Odoo RPC & API",
+  "main": "lib/index.js",
+  "repository": "https://github.com/tools-utils/odoo-api.git",
+  "author": "https://github.com/tools-utils",
+  "license": "MIT",
+  "scripts": {
+  },
+  "dependencies": {
+    "@tools-utils/odoo-rpc": "^1.0.1",
+    "@tools-utils/odoo-api": "^1.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-async-to-generator": "^7.7.4",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/register": "^7.6.2"
+  }
+}
