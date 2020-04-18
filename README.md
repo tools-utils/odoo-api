@@ -16,7 +16,7 @@ delete  => DELETE /:model/:id
 
 - [ORM syntax](https://www.odoo.com/documentation/9.0/reference/orm.html)
 - For `create` or `update` method you can apply the **magic** ORM syntax to manipulate the `relation objects`.
-- **For Example** if you want to add/update a `category` for a `res.partner`
+- **For Example** if you want to add/update a `category` (many2many) for a `res.partner`
 
 ```
 {
@@ -41,6 +41,15 @@ delete  => DELETE /:model/:id
   name: 'Muster Mann',
   ref: 100,
   category_id: [[4, 8, 0]] // add category (8) to the current set of categories
+}
+```
+
+```
+# category_id = 8, an existing category
+{
+  name: 'Muster Mann',
+  ref: 100,
+  category_id: [[5, 0, 0]] // remove all categories
 }
 ```
 
