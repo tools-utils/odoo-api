@@ -22,7 +22,7 @@ delete  => DELETE /:model/:id
 {
   name: 'Muster Mann',
   ref: 100,
-  category_id: [0, 0, { name: 'test', display_name: 'Mocha Test', color: 1}] // create a new category
+  category_id: [[0, 0, { name: 'test', display_name: 'Mocha Test', color: 1}]] // create a new category
 }
 ```
 
@@ -31,7 +31,7 @@ delete  => DELETE /:model/:id
 {
   name: 'Muster Mann',
   ref: 100,
-  category_id: [1, 20, { name: 'test', display_name: 'Mocha Test', color: 2}] // update color to 2
+  category_id: [[1, 20, { name: 'test', display_name: 'Mocha Test', color: 2}]] // update color to 2
 }
 ```
 
@@ -40,7 +40,7 @@ delete  => DELETE /:model/:id
 {
   name: 'Muster Mann',
   ref: 100,
-  category_id: [4, 8, 0] // add category (8) to the current set of categories
+  category_id: [[4, 8, 0]] // add category (8) to the current set of categories
 }
 ```
 
@@ -49,7 +49,7 @@ delete  => DELETE /:model/:id
 {
   name: 'Muster Mann',
   ref: 100,
-  category_id: [6, 0, [8]] // replace the current set of categories with 8
+  category_id: [[6, 0, [8]]] // replace the current set of categories with 8
 }
 ```
 
