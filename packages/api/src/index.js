@@ -25,7 +25,6 @@ const getOptions = (req) => {
 }
 
 const auth = async (req, res) => {
-  try {} catch(e) {}
   const body = await micro.json(req)
   const { db, login, password } = body  
   const resp = await odoo.auth({ db, login, password })

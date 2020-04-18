@@ -57,8 +57,6 @@ const getOptions = req => {
 
 const auth = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator(function* (req, res) {
-    try {} catch (e) {}
-
     const body = yield _micro.default.json(req);
     const {
       db,
