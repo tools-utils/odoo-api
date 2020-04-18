@@ -1,6 +1,6 @@
 {
   "name": "@tools-utils/odoo-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Odoo API",
   "main": "lib/index.js",
   "repository": "https://github.com/tools-utils/odoo-api.git",
@@ -10,7 +10,7 @@
     "test": "./node_modules/.bin/mocha --require @babel/register test/*.test.js"
   },
   "dependencies": {
-    "@tools-utils/odoo-rpc": "1.0.0",
+    "@tools-utils/odoo-rpc": "^1.0.1",
     "micro": "^9.3.4",
     "microrouter": "^3.1.3"
   },

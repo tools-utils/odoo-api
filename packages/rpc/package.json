@@ -1,6 +1,6 @@
 {
   "name": "@tools-utils/odoo-rpc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Odoo RPC",
   "main": "lib/index.js",
   "repository": "https://github.com/tools-utils/odoo-api.git",
