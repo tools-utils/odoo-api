@@ -61,6 +61,36 @@ delete  => DELETE /:model/:id
   category_id: [[6, 0, [8]]] // replace the current set of categories with 8
 }
 ```
+# Create `sale.order`
+
+```
+# partner_id = 100, product_id_1 = 50, uom_id_1 = 2, product_id_2 = 51, uom_id_2 = 3
+let saleOrderLine1 = {
+  name: 'iPhone 7 Plus 128GB',
+  price_unit: 103000,
+  product_id: product_id_1,
+  uom_id: uom_id_1,
+  product_uom_qty: 1
+}
+
+let saleOrderLine2 = {
+  name: 'Remote keyboard for iPad - Bluetooth',
+  price_unit: 60,
+  product_id: product_id_2,
+  uom_id: uom_id_2,
+  product_uom_qty: 1
+}
+
+let saleOrder = {
+  partner_id,
+  name: '[e-commerce] 20200419/SO100',
+  client_order_ref: '20200419',
+  create_date: '2020-04-19',
+  date_order: '2020-04-19',
+  order_line: [[0, 0, saleOrderLine1], [0, 0, saleOrderLine2]], // (0, _, values) syntax
+  state: 'draft'
+}
+```
 
 # Tests
 
