@@ -118,6 +118,11 @@ export PORT=9000
 
 node lib/index.js 
 ```
+- Start `postgres`, `odoo` and `odoo REST API`
+
+```
+docker-compose up
+```
 
 ```
 curl -d '{"db": "odoo", "login": "a.user", "password": "secret" }' -H 'Content-Type: application/json'  http://localhost:9000/auth
