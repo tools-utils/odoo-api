@@ -1,5 +1,27 @@
 version: '3'
 services:
+  db:
+    image: postgres:10
+    container_name: db
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
+     environment:
+      - POSTGRES_USER=odoo
+      - POSTGTES_PASSWORD=odoo
+  odoo:
+    image: odoo:9.0
+    container_name: odoo
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - 8069:8069
+    volumes:
+      - ./odoo/config:/etc/odoo
+      - ./odoo/extra-addons:/mnt/extra-addons
   build_image:
     build:
       context: .
@@ -13,7 +35,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
-      ODOO_HOST: http://127.0.0.0:8069
+      ODOO_HOST: odoo:8069
       PORT: 9000
     ports:
       - 9000:9000
