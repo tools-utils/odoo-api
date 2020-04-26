@@ -87,7 +87,4 @@ describe('Partner tests', () => {
       done()
     })
   })
-  
-  it('Import vendors from json', (done) => {
-  })
 })
