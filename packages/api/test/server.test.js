@@ -47,7 +47,7 @@ const update = (id, done) => {
 }
 
 describe('APIs Test', () => {
-  it('Should login OK', (done) => {
+  before((done) => {
     request(app).post('/auth')
     .send(settings)
     .expect(200)
@@ -58,6 +58,7 @@ describe('APIs Test', () => {
       assert.ok(res.body.result.uid, 'uid not found')
       assert.ok(res.body.result.session_id, 'session_id not found')
 
+      //keeps token for further requests
       token = res.body.result.session_id
       done()
     })
@@ -90,8 +91,8 @@ describe('APIs Test', () => {
     })
   })
 
-  it('search / create / update', (done) => {
-    request(app).get('/res.partner/?domain=[[ "ref", "=", "33117579"]]&fields=["name", "category_id", "customer"]')
+  it('Using domain to find parner', (done) => {
+    request(app).get('/res.partner/?domain=["|", [ "ref", "=", "33117579"], [ "id", "=", 1] ]&fields=["name", "category_id", "customer"]&pagination={ "page": 2 , "perPage": 5 }')
     .set('Authorization', token)
     .expect(200)
     .end(function(err, res) {
@@ -99,15 +100,36 @@ describe('APIs Test', () => {
       assert.ok(res.body)
       assert.ok(res.body.result, 'Result not found')
       if (res.body.result.length == 0) {
-        console.log(`Create a customer... `)
-        create(done)
+        console.log(`Partner not found`)
       } else{
-        console.log(`Customer found... `, res.body.result)
-        for (let item of res.body.result) {
-          update(item.id, done)
-        }
+        console.log(`Partner found... `, res.body.result.length)
+      }
+      done()
+    })
+  })
+
+  it('{ "or": [{ "id": 1 }, { "company_id": 1 }, { "ref": "33117579" } ] }', (done) => {
+    let filter = {
+      or: [{ id: 1 }, { company_id: 1 }, { ref: 33117579 }],
+    }
+    let fields = ['name', 'category_id', 'customer']
+    let pagination= { 'page': 2 , 'perPage': 5 }
+
+    request(app).get(`/res.partner/`)
+    .set('Authorization', token)
+    .query({ filter, fields, pagination })
+    .expect(200)
+    .end(function(err, res) {
+      if (err) throw done(err)
+      assert.ok(res.body)
+      assert.ok(res.body.result, 'Result not found')
+      if (res.body.result.length == 0) {
+        console.log(`Partner not found`)
+      } else{
+        console.log(`Partner found... `, res.body.result.length)
         done()
       }
     })
   })
+
 })

@@ -7,6 +7,7 @@ It provides a simple `REST API` for `odoo` server.
 getOne  => GET    /:model/:id
 getMany => GET    /:model/?id=100&id=200
 getMany => GET    /:model/?domain=[["ref", "=", "33117579"]]&fields=["name", "category_id", "customer"])
+getMany => GET    /:model/?filter={ company_id: 1, "name": { "ilike": "%John%" }}&fields=["name", "display_name"]&pagination={ "page": 1 , "perPage": 5 }&sort={ "field": "name", "order": "desc" }
 create  => POST   /:model
 update  => PUT    /:model/:id
 delete  => DELETE /:model/:id

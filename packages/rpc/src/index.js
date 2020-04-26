@@ -98,6 +98,10 @@ class Odoo {
     const args = [domain]
     return await this.callkw({ model, method, args, kwargs }, options)
   }
+
+  async infos({}) {
+    
+  }
 }
 
 export default Odoo
