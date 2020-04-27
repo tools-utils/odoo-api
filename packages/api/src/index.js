@@ -77,13 +77,23 @@ const getOptions = (req) => {
   const context = { lang, tz, uid }
   return { cookie: token, context, sessionId }
 }
-
+ 
 const auth = async (req, res) => {
   const body = await micro.json(req)
   const { db, login, password } = body  
   const resp = await odoo.auth({ db, login, password })
 
-  micro.send(res, resp.status, resp.data)
+  let data = resp.data
+
+  if (!data.result.session_id) {
+    let cookie = resp.headers['set-cookie'][0]
+    let start = cookie.indexOf('=')
+    let end = cookie.indexOf(';')
+    cookie = cookie.substring(start + 1, end)
+    data.result.session_id = cookie
+  }
+
+  micro.send(res, resp.status, data)
 }
 
 // ?id=1&id=2
