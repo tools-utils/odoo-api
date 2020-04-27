@@ -2,6 +2,7 @@ import assert from 'assert'
 import Odoo from '../src/index'
 import settings from './settings'
 import handleError from './handle-error'
+import getSessionId from './get-session-id'
 
 const odoo = new Odoo({ baseURL: settings.baseURL })
 const model = 'res.partner'
@@ -13,7 +14,6 @@ const data = {
   mobile: '+49 176 1234 56',
   email: 'odoo.api@tools-utils.com',
   active: 'true',
-  customer: 'true',
   company_type: 'person'
 }
 
@@ -22,12 +22,12 @@ describe('Test create/update method', () => {
     try {
       let resp = await odoo.auth(settings)
       assert.ok(resp.data.result.uid)
-      assert.ok(resp.data.result.session_id)
+
+      let sessionId = getSessionId(resp)
+      assert.ok(sessionId)
+      
       const context = resp.data.result.user_context
-
-      const sessionId = resp.data.result.session_id
       let cookie = `session_id=${sessionId}`
-
       const domain = [[ 'name', '=', 'Muster Mann' ]]
       const kwargs = {
         limit: 10,

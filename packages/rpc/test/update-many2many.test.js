@@ -2,6 +2,7 @@ import assert from 'assert'
 import Odoo from '../src/index'
 import settings from './settings'
 import handleError from './handle-error'
+import getSessionId from './get-session-id'
 
 const odoo = new Odoo({ baseURL: settings.baseURL })
 const model = 'res.partner'
@@ -13,7 +14,6 @@ const data = {
   mobile: "+49 176 1234 56",
   email: "odoo.api@tools-utils.com",
   active: "true",
-  customer: "true",
   company_type: "person",
   category_id: [[6, 0, [18]]] // make sure that id is valid - magic syntax of many2many
 }
@@ -23,10 +23,12 @@ describe('Test create/update many2many method', () => {
     try {
       let resp = await odoo.auth(settings)
       assert.ok(resp.data.result.uid)
-      assert.ok(resp.data.result.session_id)
+      
+      const sessionId = getSessionId(resp)
+      assert.ok(sessionId)
+
       const context = resp.data.result.user_context
 
-      const sessionId = resp.data.result.session_id
       let cookie = `session_id=${sessionId}`
 
       const domain = [[ 'name', '=', 'Muster Mann' ]]

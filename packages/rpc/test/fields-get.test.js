@@ -2,6 +2,7 @@ import assert from 'assert'
 import Odoo from '../src/index'
 import settings from './settings'
 import handleError from './handle-error'
+import getSessionId from './get-session-id'
 
 const odoo = new Odoo({ baseURL: settings.baseURL })
 let cookie
@@ -11,11 +12,10 @@ describe('Test get fields', () => {
   before(async () => {
     let resp = await odoo.auth(settings)
     assert.ok(resp.data.result.uid)
-    assert.ok(resp.data.result.session_id)
 
-    const context = resp.data.result.user_context
-
-    const sessionId = resp.data.result.session_id
+    context = resp.data.result.user_context
+    sessionId = getSessionId(resp)
+    assert.ok(sessionId)
     cookie = `session_id=${sessionId}`
   })
 

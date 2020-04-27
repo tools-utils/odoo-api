@@ -4,7 +4,7 @@ import app from './start-server'
 import settings from './settings'
 
 
-let token = null
+let token = ''
 
 describe('Stock tests', () => {
   before((done) => {
@@ -14,6 +14,7 @@ describe('Stock tests', () => {
     .end(function(err, res) {
       if (err) throw done(err)
       assert.ok(res.body)
+      
       assert.ok(res.body.result, 'Result not found')
       assert.ok(res.body.result.uid, 'uid not found')
       assert.ok(res.body.result.session_id, 'session_id not found')

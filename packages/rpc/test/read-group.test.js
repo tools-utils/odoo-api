@@ -2,6 +2,7 @@ import assert from 'assert'
 import Odoo from '../src/index'
 import settings from './settings'
 import handleError from './handle-error'
+import getSessionId from './get-session-id'
 
 const odoo = new Odoo({ baseURL: settings.baseURL })
 
@@ -10,10 +11,11 @@ describe('Test read group method', () => {
     try {
       let resp = await odoo.auth(settings)
       assert.ok(resp.data.result.uid)
-      assert.ok(resp.data.result.session_id)
       
       const context = resp.data.result.user_context
-      const sessionId = resp.data.result.session_id
+      const sessionId = getSessionId(resp)
+      assert.ok(sessionId)
+
       let cookie = `session_id=${sessionId}`
 
       const domain = [["state","not in", 

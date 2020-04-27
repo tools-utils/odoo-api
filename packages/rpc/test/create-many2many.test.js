@@ -13,7 +13,6 @@ const data = {
   mobile: "+49 176 1234 56",
   email: "odoo.api@tools-utils.com",
   active: "true",
-  customer: "true",
   company_type: "person",
   category_id: [[1, 20, { name: 'test', display_name: 'Mocha Test', color: 2 }]],
   ref: 9999
