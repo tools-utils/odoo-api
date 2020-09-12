@@ -117,9 +117,12 @@ yarn build
 export ODOO_HOST=http://0.0.0.0:8069
 export PORT=9000
 
-node lib/index.js 
+node lib/index.js
+
+# Starting Odoo REST API... 9000
 ```
-- Start `postgres`, `odoo` and `odoo REST API`
+
+- Start `postgres`, `odoo` and `odoo REST API` with `docker`
 
 ```
 docker-compose up
@@ -127,4 +130,7 @@ docker-compose up
 
 ```
 curl -d '{"db": "odoo", "login": "a.user", "password": "secret" }' -H 'Content-Type: application/json'  http://localhost:9000/auth
+
+# prettier print JSON response from curl
+curl -d '{"db": "odoo", "login": "a.user", "password": "secret" }' -H 'Content-Type: application/json'  http://localhost:9000/auth | json_pp
 ```
