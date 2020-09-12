@@ -7,7 +7,7 @@ const baseURL = process.env.ODOO_HOST || 'http://0.0.0.0:8069'
 const odoo = new Odoo({ baseURL })
 
 const getToken = (req) => {
-  const token = req.headers['Authorization'] || req.headers['authorization'] || 'aa31176b347590eb1b52fdd33a7d923cabfc81d2'
+  const token = req.headers['Authorization'] || req.headers['authorization']
   if (!token) throw new Error('Missing access token')
   return token
 }
