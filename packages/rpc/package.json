@@ -11,7 +11,7 @@
     "test": "yarn build && ./node_modules/.bin/mocha --require @babel/register $1"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
